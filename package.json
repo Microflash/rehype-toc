@@ -1,0 +1,32 @@
+{
+	"name": "@microflash/rehype-toc",
+	"version": "1.0.0",
+	"description": "rehype plugin to generate table of contents (TOC)",
+	"license": "MIT",
+	"keywords": [
+		"unified",
+		"rehype",
+		"rehype-plugin",
+		"plugin",
+		"hast",
+		"toc",
+		"contents"
+	],
+	"repository": "https://github.com/Microflash/rehype-toc.git",
+	"bugs": "https://github.com/Microflash/rehype-toc/issues",
+	"homepage": "https://github.com/Microflash/rehype-toc#readme",
+	"author": "Naiyer Asif (https://mflash.dev)",
+	"type": "module",
+	"main": "index.js",
+	"files": [
+		"index.js"
+	],
+	"dependencies": {
+		"hast-util-find-and-replace": "^4.1.1",
+		"hast-util-has-property": "^2.0.0",
+		"hast-util-heading-rank": "^2.1.0",
+		"hast-util-to-string": "^2.0.0",
+		"hastscript": "^7.0.2",
+		"unist-util-visit": "^4.1.0"
+	}
+}
