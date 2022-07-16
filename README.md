@@ -78,7 +78,6 @@ import { read } from 'to-vfile'
 import { rehype } from 'rehype'
 import rehypeSlugify from '@microflash/rehype-slugify'
 import rehypeToc from '@microflash/rehype-toc'
-import rehypeRemoveEmptyParagraph from 'rehype-remove-empty-paragraph'
 
 const slugger = new Slugger()
 
@@ -96,7 +95,6 @@ async function main() {
       }
     })
     .use(rehypeToc)
-    .use(rehypeRemoveEmptyParagraph)
     .process(await read('example.md'))
 
   console.log(String(file))
@@ -108,7 +106,7 @@ Running that with `node example.js` yields:
 ```html
 <h1 id="alpha">Alpha</h1>
 
-<details id="table-of-contents" class="toc">
+<details class="toc" id="table-of-contents">
   <summary>Table of contents</summary>
   <ul class="toc-items">
     <li class="toc-item-1"><a href="#alpha">Alpha</a></li>
@@ -133,7 +131,8 @@ The default export is `rehypeToc`.
 
 The following options are available. All of them are optional.
 
-- `matcher`: regex to match a node which can be replaced with table of contents. It can be any expression that [`hast-util-find-and-replace`](https://github.com/syntax-tree/hast-util-find-and-replace) can accept.
+- `matcher` (default: `[[toc]]`): regex to match a node which can be replaced with table of contents. It can be any expression that [`hast-util-find-and-replace`](https://github.com/syntax-tree/hast-util-find-and-replace) can accept.
+- `id` (default: `table-of-contents`): the `id` of the TOC wrapper.
 - `toc(headings)`: function that returns table of contents as HAST. `headings` array is available to customize the HAST the way you want. The default implementation generates a `<details>` element with the headings as a flat unordered list.
 
 ## Security

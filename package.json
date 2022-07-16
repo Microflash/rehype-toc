@@ -1,6 +1,6 @@
 {
 	"name": "@microflash/rehype-toc",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "rehype plugin to generate table of contents (TOC)",
 	"license": "MIT",
 	"keywords": [
@@ -22,7 +22,7 @@
 		"index.js"
 	],
 	"dependencies": {
-		"hast-util-find-and-replace": "^4.1.1",
+		"hast-util-find-and-replace": "^4.1.2",
 		"hast-util-has-property": "^2.0.0",
 		"hast-util-heading-rank": "^2.1.0",
 		"hast-util-to-string": "^2.0.0",
