@@ -1,6 +1,6 @@
 {
 	"name": "@microflash/rehype-toc",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "rehype plugin to generate table of contents (TOC)",
 	"license": "MIT",
 	"keywords": [

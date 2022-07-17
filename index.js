@@ -4,7 +4,7 @@
 import { hasProperty } from 'hast-util-has-property'
 import { headingRank } from 'hast-util-heading-rank'
 import { toString } from 'hast-util-to-string'
-import { visit } from 'unist-util-visit'
+import { visit, SKIP } from 'unist-util-visit'
 import { findAndReplace } from 'hast-util-find-and-replace'
 import { h } from 'hastscript'
 
@@ -46,7 +46,7 @@ export default function rehypeToc(userOptions) {
 		const treeWithToc = findAndReplace(tree, [
 			[
 				options.matcher, function () {
-					const el = options.toc(headings)
+					const el = headings.length ? options.toc(headings) : h('del')
 					el.properties.id = options.id
 					return el
 				}
@@ -54,12 +54,16 @@ export default function rehypeToc(userOptions) {
 		])
 
 		// squeeze the toc node
-		visit(treeWithToc, 'element', (node) => {
+		visit(treeWithToc, 'element', (node, index, parent) => {
 			const { tagName, children } = node
 			if (tagName === 'p' && children && children[0].properties && children[0].properties.id === options.id) {
-				node.tagName = children[0].tagName
-				node.properties = children[0].properties
-				node.children = children[0].children
+				if (children[0].tagName === 'del') {
+					parent.children.splice(index, 1)
+				} else {
+					parent.children.splice(index, 1, ...node.children)
+				}
+
+				return [SKIP, index]
 			}
 		})
 	}
